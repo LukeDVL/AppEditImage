@@ -1,0 +1,4 @@
+*.log
+
+AppEditImage/bin/Debug/
+AppEditImage/bin/Release/

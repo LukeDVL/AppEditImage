@@ -1,0 +1,14 @@
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\bin\Debug\AppEditImage.exe.config
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\bin\Debug\AppEditImage.exe
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\bin\Debug\AppEditImage.pdb
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.Properties.Resources.resources
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.csproj.GenerateResource.cache
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.csproj.CoreCompileInputs.cache
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.exe
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.pdb
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.frmMain.resources
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.Controllers.Crop.resources
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.csproj.AssemblyReference.cache
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.frmStart.resources
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.Controllers.LightColor.resources
+D:\KGU\XuLyAnhVaThiGiacMayTinh\AppEditImage\AppEditImage\obj\Debug\AppEditImage.Controllers.Filter.resources
