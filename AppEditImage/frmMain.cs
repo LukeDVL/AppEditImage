@@ -258,7 +258,7 @@ namespace AppEditImage
                 picImg.Invalidate(); // Vô hiệu hóa điều khiển để kích hoạt sự kiện Paint
             }
         }
-
+        //! this is not good
         private void picImg_MouseUp(object sender, MouseEventArgs e)
         {
             if (mouseDown)
@@ -268,14 +268,32 @@ namespace AppEditImage
 
                 if (Rect != null)
                 {
+                    double ratioWi = (double)picImg.Image.Width / picImg.Image.Height;
+                    double ratioHi = (double)picImg.Image.Height / picImg.Image.Width;
 
-                    Bitmap bitm = new Bitmap(picImg.Image, picImg.Width, picImg.Height);
-                    Bitmap crop = new Bitmap(Rect.Width, Rect.Height);
+                    int offsetX = (int)((picImg.Width - (picImg.Height * ratioWi)) / 2);
+                 
+                    
+                    int offsetY = (int)((picImg.Height - (picImg.Width * ratioHi)) / 2);
+                    offsetX = offsetX < 0 ? 0 : offsetX;
+                    offsetY = offsetY < 0 ? 0 : offsetY;
+
+                    Bitmap bitm = new Bitmap(picImg.Image, picImg.Width - (offsetX *2), picImg.Height - (offsetY * 2));
+                    Bitmap crop = new Bitmap(Rect.Width, Rect.Height);                   
+
+                    Rectangle newRect = new Rectangle();
+                    newRect.X = Rect.X < offsetX ? 0 : Rect.X - offsetX;
+                    newRect.Y = Rect.Y < offsetY ? 0 : Rect.Y - offsetY;
+
+                    newRect.Width = Rect.Width - (Rect.X > offsetX ? 0 : Rect.X - offsetX);
+
+                    newRect.Height = Rect.Height - (Rect.Y > offsetY ? 0 : Rect.Y - offsetY);
 
                     using (Graphics g = Graphics.FromImage(crop))
                     {
-                        g.DrawImage(bitm, 0, 0, Rect, GraphicsUnit.Pixel);
+                        g.DrawImage(bitm, 0, 0, newRect, GraphicsUnit.Pixel);
                     }
+
 
                     picImg.Image = crop;
                     ImageHistoryManager.Instance.SaveHistoryState(crop);
