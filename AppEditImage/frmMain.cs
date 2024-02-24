@@ -261,48 +261,59 @@ namespace AppEditImage
         //! this is not good
         private void picImg_MouseUp(object sender, MouseEventArgs e)
         {
-            if (mouseDown)
-            {
+            if (!mouseDown) return;
                 b = e.Location;
                 mouseDown = false;
+            if (Rect == null) return;
+                
+            Point offset = getOffSet();
 
-                if (Rect != null)
+            Rectangle intersectionRect = Helper.GetIntersectionRect(Rect, new Rectangle(offset.X , offset.Y, picImg.Width - offset.X * 2, picImg.Height - offset.Y *2));
+
+            if(intersectionRect != Rectangle.Empty)
+            {
+                double scale = Math.Max(1, offset.X < offset.Y ? (double)picImg.Image.Width / picImg.Width : (double)picImg.Image.Height / picImg.Height);
+
+                Rectangle rectWithScale = new Rectangle
                 {
-                    double ratioWi = (double)picImg.Image.Width / picImg.Image.Height;
-                    double ratioHi = (double)picImg.Image.Height / picImg.Image.Width;
+                    X = (int) ((intersectionRect.X - offset.X) * scale),
+                    Y = (int) ((intersectionRect.Y - offset.Y) * scale),
+                    Width = (int)(intersectionRect.Width * scale),
+                    Height = (int)(intersectionRect.Height * scale)
+                };
 
-                    int offsetX = (int)((picImg.Width - (picImg.Height * ratioWi)) / 2);
-                 
+                Bitmap bitm = new Bitmap(picImg.Image, (int)((picImg.Width - offset.X * 2) * scale), (int)((picImg.Height - offset.Y * 2) * scale));
+                Bitmap crop = new Bitmap(rectWithScale.Width, rectWithScale.Height);
 
-                    int offsetY = (int)((picImg.Height - (picImg.Width * ratioHi)) / 2);
-                    offsetX = offsetX < 0 ? 0 : offsetX;
-                    offsetY = offsetY < 0 ? 0 : offsetY;
-
-                    Bitmap bitm = new Bitmap(picImg.Image, picImg.Width - (offsetX *2), picImg.Height - (offsetY * 2));
-                    Bitmap crop = new Bitmap(Rect.Width, Rect.Height);                   
-
-                    Rectangle newRect = new Rectangle();
-                    newRect.X = Rect.X < offsetX ? 0 : Rect.X - offsetX;
-                    newRect.Y = Rect.Y < offsetY ? 0 : Rect.Y - offsetY;
-
-                    newRect.Width = Rect.Width - (Rect.X > offsetX ? 0 : offsetX - Rect.X);
-
-                    newRect.Height = Rect.Height - (Rect.Y > offsetY ? 0 :  offsetY - Rect.Y);
-
-                    using (Graphics g = Graphics.FromImage(crop))
-                    {
-                        g.DrawImage(bitm, 0, 0, newRect, GraphicsUnit.Pixel);
-                    }
-
-
-                    picImg.Image = crop;
-                    ImageHistoryManager.Instance.SaveHistoryState(crop);
-                    ImageHistoryManager.Instance.currentImage = crop;
-                    isEdited = true;
-
-
+                using (Graphics g = Graphics.FromImage(crop))
+                {
+                    g.DrawImage(bitm, 0, 0, rectWithScale, GraphicsUnit.Pixel);
                 }
+
+
+                picImg.Image = crop;
+                ImageHistoryManager.Instance.SaveHistoryState(crop);
+                ImageHistoryManager.Instance.currentImage = crop;
+                isEdited = true;
+            } else
+            {
+                isEdited = true;
+                picImg.Refresh();
             }
+
+            
+        }
+
+        private Point getOffSet()
+        {
+            double ratioWi = (double)picImg.Image.Width / picImg.Image.Height;
+            double ratioHi = (double)picImg.Image.Height / picImg.Image.Width;
+
+            return new Point
+            {
+                X = (int)Math.Max((picImg.Width - (picImg.Height * ratioWi)) / 2, 0),
+                Y = (int)Math.Max((picImg.Height - (picImg.Width * ratioHi)) / 2, 0)
+            };
         }
 
         private Rectangle GetRect()
