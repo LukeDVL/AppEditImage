@@ -82,6 +82,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utils\ConvolutionMatrix.cs" />
     <Compile Include="utils\Filters.cs" />
+    <Compile Include="utils\Helper.cs" />
     <Compile Include="utils\ImageHistoryManager.cs" />
     <Compile Include="utils\Light.cs" />
     <EmbeddedResource Include="Controllers\Crop.resx">
