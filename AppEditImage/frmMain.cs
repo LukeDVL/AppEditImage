@@ -273,7 +273,7 @@ namespace AppEditImage
 
                     int offsetX = (int)((picImg.Width - (picImg.Height * ratioWi)) / 2);
                  
-                    
+
                     int offsetY = (int)((picImg.Height - (picImg.Width * ratioHi)) / 2);
                     offsetX = offsetX < 0 ? 0 : offsetX;
                     offsetY = offsetY < 0 ? 0 : offsetY;
@@ -285,9 +285,9 @@ namespace AppEditImage
                     newRect.X = Rect.X < offsetX ? 0 : Rect.X - offsetX;
                     newRect.Y = Rect.Y < offsetY ? 0 : Rect.Y - offsetY;
 
-                    newRect.Width = Rect.Width - (Rect.X > offsetX ? 0 : Rect.X - offsetX);
+                    newRect.Width = Rect.Width - (Rect.X > offsetX ? 0 : offsetX - Rect.X);
 
-                    newRect.Height = Rect.Height - (Rect.Y > offsetY ? 0 : Rect.Y - offsetY);
+                    newRect.Height = Rect.Height - (Rect.Y > offsetY ? 0 :  offsetY - Rect.Y);
 
                     using (Graphics g = Graphics.FromImage(crop))
                     {
