@@ -34,12 +34,7 @@ namespace AppEditImage
             start();
         }
 
-        public void ShowImage()
-        {
-            picImg.Image = ImageHistoryManager.Instance.currentImage;
-
-        }
-        public void ShowImageOther(Bitmap image)
+        public void ShowImage(Bitmap image)
         {
             picImg.Image = image;
 
@@ -55,31 +50,7 @@ namespace AppEditImage
 
         }
 
-        private void Undo()
-        {
-            if (ImageHistoryManager.Instance.currentNode != null && ImageHistoryManager.Instance.currentNode.Previous != null)
-            {
-                ImageHistoryManager.Instance.currentNode = ImageHistoryManager.Instance.currentNode.Previous;
-                ImageHistoryManager.Instance.currentImage = new Bitmap(ImageHistoryManager.Instance.currentNode.Value);
-                lightColorContronller.trackBarBrightness.Value = 0;
-                lightColorContronller.txbBrightness.Text = "0";
-
-                lightColorContronller.trackBarContrast.Value = 0;
-                lightColorContronller.txbContrast.Text = "0";
-                ShowImage();
-            }
-        }
-
-        private void Redo()
-        {
-            if (ImageHistoryManager.Instance.currentNode != null && ImageHistoryManager.Instance.currentNode.Next != null)
-            {
-                ImageHistoryManager.Instance.currentNode = ImageHistoryManager.Instance.currentNode.Next;
-                ImageHistoryManager.Instance.currentImage = new Bitmap(ImageHistoryManager.Instance.currentNode.Value);
-
-                ShowImage();
-            }
-        }
+        
 
         public void Save()
         {
@@ -97,12 +68,19 @@ namespace AppEditImage
 
         public void btnUndo_Click(object sender, EventArgs e)
         {
-            Undo();
+            ImageHistoryManager.Instance.Undo();
+            lightColorContronller.trackBarBrightness.Value = 0;
+            lightColorContronller.txbBrightness.Text = "0";
+
+            lightColorContronller.trackBarContrast.Value = 0;
+            lightColorContronller.txbContrast.Text = "0";
+            ShowImage(ImageHistoryManager.Instance.currentImage);
         }
 
         private void btnRedo_Click(object sender, EventArgs e)
         {
-            Redo();
+            ImageHistoryManager.Instance.Redo();
+            ShowImage(ImageHistoryManager.Instance.currentImage);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -216,7 +194,7 @@ namespace AppEditImage
         private void btnCompare_MouseUp(object sender, MouseEventArgs e)
         {
             // Khi nút được thả ra, chuyển về ảnh đang sửa
-            picImg.Image = imgNow;
+            ShowImage(imgNow);
             imgNow = null;
 
 
@@ -226,7 +204,7 @@ namespace AppEditImage
         {
             // Khi nút được ấn giữ, chuyển đổi giữa ảnh gốc và ảnh đang sửa
             imgNow = (Bitmap)picImg.Image;
-            picImg.Image = ImageHistoryManager.Instance.originalImage;
+            ShowImage(ImageHistoryManager.Instance.originalImage);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -277,7 +255,7 @@ namespace AppEditImage
                         g.DrawImage(bitm, 0, 0, Rect, GraphicsUnit.Pixel);
                     }
 
-                    picImg.Image = crop;
+                    ShowImage(crop);
                     ImageHistoryManager.Instance.SaveHistoryState(crop);
                     ImageHistoryManager.Instance.currentImage = crop;
                     isEdited = true;

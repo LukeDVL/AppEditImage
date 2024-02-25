@@ -28,12 +28,12 @@ namespace AppEditImage.Controllers
             if (ImageHistoryManager.Instance.currentImage != null)
             {
                 //xoay với góc -90 độ (xoay sang trái)
-                Bitmap rotatedImage = new Bitmap(main.picImg.Image);
+                Bitmap rotatedImage = new Bitmap(ImageHistoryManager.Instance.currentImage);
                 rotatedImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
                 // Lưu trạng thái trước khi thay đổi
                 ImageHistoryManager.Instance.SaveHistoryState(rotatedImage);
                 ImageHistoryManager.Instance.currentImage = rotatedImage;
-                main.ShowImageOther(rotatedImage);
+                main.ShowImage(rotatedImage);
                 main.isEdited = true;
             }
         }
@@ -43,12 +43,12 @@ namespace AppEditImage.Controllers
             if (ImageHistoryManager.Instance.currentImage != null)
             {
                 //xoay với góc 90 độ (xoay sang phải)
-                Bitmap rotatedImage = new Bitmap(main.picImg.Image);
+                Bitmap rotatedImage = new Bitmap(ImageHistoryManager.Instance.currentImage);
                 rotatedImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 // Lưu trạng thái trước khi thay đổi
                 ImageHistoryManager.Instance.SaveHistoryState(rotatedImage);
                 ImageHistoryManager.Instance.currentImage = rotatedImage;
-                main.ShowImageOther(rotatedImage);
+                main.ShowImage(rotatedImage);
                 main.isEdited = true;
             }
         }
@@ -57,13 +57,13 @@ namespace AppEditImage.Controllers
         {
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                // Thực hiện lật ảnh theo chiều ngang
-                Bitmap flipImage = new Bitmap(main.picImg.Image);
+                // Thực hiện lật ảnh theo chiều dọc
+                Bitmap flipImage = new Bitmap(ImageHistoryManager.Instance.currentImage);
                 flipImage.RotateFlip(RotateFlipType.RotateNoneFlipY);
                 // Lưu trạng thái trước khi thay đổi
                 ImageHistoryManager.Instance.SaveHistoryState(flipImage);
                 ImageHistoryManager.Instance.currentImage = flipImage;
-                main.ShowImageOther(flipImage);
+                main.ShowImage(flipImage);
                 main.isEdited = true;
             }
         }
@@ -75,12 +75,12 @@ namespace AppEditImage.Controllers
                 
                 // Thực hiện lật ảnh theo chiều ngang
 
-                Bitmap flipImage = new Bitmap(main.picImg.Image);
+                Bitmap flipImage = new Bitmap(ImageHistoryManager.Instance.currentImage);
                 flipImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
                 // Lưu trạng thái trước khi thay đổi
                 ImageHistoryManager.Instance.SaveHistoryState(flipImage);
                 ImageHistoryManager.Instance.currentImage = flipImage;
-                main.ShowImageOther(flipImage);
+                main.ShowImage(flipImage);
                 main.isEdited = true;
             }
 

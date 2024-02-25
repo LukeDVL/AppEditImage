@@ -37,6 +37,8 @@ namespace AppEditImage.Controllers
             this.lbContrast = new System.Windows.Forms.Label();
             this.lbBrightness = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBrightness = new System.Windows.Forms.Button();
+            this.btnContrast = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBrightness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarContrast)).BeginInit();
             this.panel1.SuspendLayout();
@@ -48,11 +50,10 @@ namespace AppEditImage.Controllers
             this.txbBrightness.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbBrightness.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
             this.txbBrightness.ForeColor = System.Drawing.Color.White;
-            this.txbBrightness.Location = new System.Drawing.Point(229, 69);
-            this.txbBrightness.Margin = new System.Windows.Forms.Padding(4);
+            this.txbBrightness.Location = new System.Drawing.Point(172, 56);
             this.txbBrightness.MaxLength = 4;
             this.txbBrightness.Name = "txbBrightness";
-            this.txbBrightness.Size = new System.Drawing.Size(43, 20);
+            this.txbBrightness.Size = new System.Drawing.Size(32, 16);
             this.txbBrightness.TabIndex = 4;
             this.txbBrightness.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txbBrightness.TextChanged += new System.EventHandler(this.txbBrightness_TextChanged);
@@ -60,12 +61,12 @@ namespace AppEditImage.Controllers
             // trackBarBrightness
             // 
             this.trackBarBrightness.AutoSize = false;
-            this.trackBarBrightness.Location = new System.Drawing.Point(5, 105);
-            this.trackBarBrightness.Margin = new System.Windows.Forms.Padding(4, 4, 4, 7);
+            this.trackBarBrightness.Location = new System.Drawing.Point(4, 85);
+            this.trackBarBrightness.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
             this.trackBarBrightness.Maximum = 100;
             this.trackBarBrightness.Minimum = -100;
             this.trackBarBrightness.Name = "trackBarBrightness";
-            this.trackBarBrightness.Size = new System.Drawing.Size(267, 25);
+            this.trackBarBrightness.Size = new System.Drawing.Size(200, 20);
             this.trackBarBrightness.TabIndex = 2;
             this.trackBarBrightness.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarBrightness.Scroll += new System.EventHandler(this.trackBarBrightness_Scroll);
@@ -77,10 +78,9 @@ namespace AppEditImage.Controllers
             this.lbLight.AutoSize = true;
             this.lbLight.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbLight.ForeColor = System.Drawing.Color.White;
-            this.lbLight.Location = new System.Drawing.Point(32, 21);
-            this.lbLight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbLight.Location = new System.Drawing.Point(24, 17);
             this.lbLight.Name = "lbLight";
-            this.lbLight.Size = new System.Drawing.Size(66, 27);
+            this.lbLight.Size = new System.Drawing.Size(52, 21);
             this.lbLight.TabIndex = 1;
             this.lbLight.Text = "LIGHT";
             // 
@@ -90,11 +90,10 @@ namespace AppEditImage.Controllers
             this.txbContrast.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbContrast.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
             this.txbContrast.ForeColor = System.Drawing.Color.White;
-            this.txbContrast.Location = new System.Drawing.Point(229, 143);
-            this.txbContrast.Margin = new System.Windows.Forms.Padding(4);
+            this.txbContrast.Location = new System.Drawing.Point(172, 116);
             this.txbContrast.MaxLength = 4;
             this.txbContrast.Name = "txbContrast";
-            this.txbContrast.Size = new System.Drawing.Size(43, 20);
+            this.txbContrast.Size = new System.Drawing.Size(32, 16);
             this.txbContrast.TabIndex = 10;
             this.txbContrast.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txbContrast.TextChanged += new System.EventHandler(this.txbContrast_TextChanged);
@@ -102,12 +101,12 @@ namespace AppEditImage.Controllers
             // trackBarContrast
             // 
             this.trackBarContrast.AutoSize = false;
-            this.trackBarContrast.Location = new System.Drawing.Point(5, 178);
-            this.trackBarContrast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 7);
+            this.trackBarContrast.Location = new System.Drawing.Point(4, 145);
+            this.trackBarContrast.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
             this.trackBarContrast.Maximum = 100;
             this.trackBarContrast.Minimum = -100;
             this.trackBarContrast.Name = "trackBarContrast";
-            this.trackBarContrast.Size = new System.Drawing.Size(267, 25);
+            this.trackBarContrast.Size = new System.Drawing.Size(200, 20);
             this.trackBarContrast.TabIndex = 8;
             this.trackBarContrast.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarContrast.ValueChanged += new System.EventHandler(this.trackBarContrast_ValueChanged);
@@ -119,10 +118,10 @@ namespace AppEditImage.Controllers
             this.lbContrast.ForeColor = System.Drawing.Color.White;
             this.lbContrast.Image = global::AppEditImage.Properties.Resources.icons8_contrast_24;
             this.lbContrast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbContrast.Location = new System.Drawing.Point(9, 140);
-            this.lbContrast.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
+            this.lbContrast.Location = new System.Drawing.Point(7, 114);
+            this.lbContrast.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.lbContrast.Name = "lbContrast";
-            this.lbContrast.Size = new System.Drawing.Size(133, 28);
+            this.lbContrast.Size = new System.Drawing.Size(100, 23);
             this.lbContrast.TabIndex = 9;
             this.lbContrast.Text = "          Contrast";
             this.lbContrast.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -133,10 +132,10 @@ namespace AppEditImage.Controllers
             this.lbBrightness.ForeColor = System.Drawing.Color.White;
             this.lbBrightness.Image = global::AppEditImage.Properties.Resources.icons8_sun_24;
             this.lbBrightness.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbBrightness.Location = new System.Drawing.Point(9, 66);
-            this.lbBrightness.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
+            this.lbBrightness.Location = new System.Drawing.Point(7, 54);
+            this.lbBrightness.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.lbBrightness.Name = "lbBrightness";
-            this.lbBrightness.Size = new System.Drawing.Size(133, 28);
+            this.lbBrightness.Size = new System.Drawing.Size(100, 23);
             this.lbBrightness.TabIndex = 3;
             this.lbBrightness.Text = "          Brightness";
             this.lbBrightness.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -144,6 +143,8 @@ namespace AppEditImage.Controllers
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.btnContrast);
+            this.panel1.Controls.Add(this.btnBrightness);
             this.panel1.Controls.Add(this.lbLight);
             this.panel1.Controls.Add(this.txbBrightness);
             this.panel1.Controls.Add(this.txbContrast);
@@ -153,20 +154,49 @@ namespace AppEditImage.Controllers
             this.panel1.Controls.Add(this.trackBarBrightness);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(307, 838);
+            this.panel1.Size = new System.Drawing.Size(230, 681);
             this.panel1.TabIndex = 11;
+            // 
+            // btnBrightness
+            // 
+            this.btnBrightness.FlatAppearance.BorderSize = 0;
+            this.btnBrightness.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBrightness.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnBrightness.ForeColor = System.Drawing.Color.White;
+            this.btnBrightness.Image = global::AppEditImage.Properties.Resources.icons8_sun_24;
+            this.btnBrightness.Location = new System.Drawing.Point(10, 223);
+            this.btnBrightness.Name = "btnBrightness";
+            this.btnBrightness.Size = new System.Drawing.Size(105, 75);
+            this.btnBrightness.TabIndex = 11;
+            this.btnBrightness.Text = "Brightness";
+            this.btnBrightness.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBrightness.UseVisualStyleBackColor = true;
+            this.btnBrightness.Click += new System.EventHandler(this.btnBrightness_Click);
+            // 
+            // btnContrast
+            // 
+            this.btnContrast.FlatAppearance.BorderSize = 0;
+            this.btnContrast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnContrast.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnContrast.ForeColor = System.Drawing.Color.White;
+            this.btnContrast.Image = global::AppEditImage.Properties.Resources.icons8_contrast_24;
+            this.btnContrast.Location = new System.Drawing.Point(111, 223);
+            this.btnContrast.Name = "btnContrast";
+            this.btnContrast.Size = new System.Drawing.Size(105, 75);
+            this.btnContrast.TabIndex = 12;
+            this.btnContrast.Text = "Contrast";
+            this.btnContrast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnContrast.UseVisualStyleBackColor = true;
             // 
             // LightColor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LightColor";
-            this.Size = new System.Drawing.Size(307, 838);
+            this.Size = new System.Drawing.Size(230, 681);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBrightness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarContrast)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -184,5 +214,7 @@ namespace AppEditImage.Controllers
         public System.Windows.Forms.TextBox txbBrightness;
         public System.Windows.Forms.TextBox txbContrast;
         public System.Windows.Forms.TrackBar trackBarContrast;
+        private System.Windows.Forms.Button btnContrast;
+        private System.Windows.Forms.Button btnBrightness;
     }
 }

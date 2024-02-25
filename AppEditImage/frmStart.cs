@@ -39,7 +39,7 @@ namespace AppEditImage
                     
                     // Hiển thị FormMain
                     main.Show();
-                    main.ShowImage();
+                    main.ShowImage(ImageHistoryManager.Instance.currentImage);
                     // Đóng FormStart
                     this.Hide();
                 }

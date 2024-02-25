@@ -72,7 +72,7 @@ namespace AppEditImage.Controllers
                 Light.Brightness(img, trackBarBrightness.Value);
                 Light.Contrast(img, trackBarContrast.Value);
 
-                main.ShowImageOther(img);
+                main.ShowImage(img);
             }
         }
 
@@ -92,7 +92,7 @@ namespace AppEditImage.Controllers
                 Light.Contrast(img, trackBarContrast.Value);
                 Light.Brightness(img, trackBarBrightness.Value);
 
-                main.ShowImageOther(img);
+                main.ShowImage(img);
             }
         }
 
@@ -112,6 +112,11 @@ namespace AppEditImage.Controllers
         {
             ImageHistoryManager.Instance.SaveHistoryState(img);
             main.isEdited = true;
+        }
+
+        private void btnBrightness_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
