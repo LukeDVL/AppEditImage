@@ -60,6 +60,25 @@ namespace AppEditImage.utils
             }
         }
 
+        public void Undo()
+        {
+            if (currentNode != null && currentNode.Previous != null)
+            {
+                currentNode = currentNode.Previous;
+                currentImage = new Bitmap(currentNode.Value);
+            }
+        }
+
+        public void Redo()
+        {
+            if (currentNode != null && currentNode.Next != null)
+            {
+                currentNode = currentNode.Next;
+                currentImage = new Bitmap(currentNode.Value);
+
+            }
+        }
+
         public void ClearHistory()
         {
             history.Clear();

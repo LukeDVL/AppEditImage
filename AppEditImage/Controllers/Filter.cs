@@ -28,7 +28,7 @@ namespace AppEditImage.Controllers
                 Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage); ;
                 Filters.GaussianBlur(img,4);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
-                main.ShowImageOther(img);
+                main.ShowImage(img);
             }
         }
 
@@ -40,7 +40,7 @@ namespace AppEditImage.Controllers
                 Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
                 Filters.Grayscale(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
-                main.ShowImageOther(img);
+                main.ShowImage(img);
                 main.isEdited = true;
             }
         }
@@ -52,7 +52,7 @@ namespace AppEditImage.Controllers
                 Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
                 Filters.Invert(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
-                main.ShowImageOther(img);
+                main.ShowImage(img);
                 main.isEdited = true;
             }
         }
@@ -64,7 +64,7 @@ namespace AppEditImage.Controllers
                 Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
                 Filters.MeanRemoval(img,9);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
-                main.ShowImageOther(img);
+                main.ShowImage(img);
                 main.isEdited = true;
             }
         }
@@ -76,7 +76,7 @@ namespace AppEditImage.Controllers
                 Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
                 Filters.Sepia(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
-                main.ShowImageOther(img);
+                main.ShowImage(img);
                 main.isEdited = true;
             }
         }
@@ -89,7 +89,7 @@ namespace AppEditImage.Controllers
 
                 Filters.Cool(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
-                main.ShowImageOther(img);
+                main.ShowImage(img);
                 main.isEdited = true;
             }
         }
@@ -102,7 +102,7 @@ namespace AppEditImage.Controllers
 
                 Filters.Warm(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
-                main.ShowImageOther(img);
+                main.ShowImage(img);
                 main.isEdited = true;
             }
         }
@@ -115,7 +115,7 @@ namespace AppEditImage.Controllers
 
                 Filters.Emboss(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
-                main.ShowImageOther(img);
+                main.ShowImage(img);
                 main.isEdited = true;
             }
         }
