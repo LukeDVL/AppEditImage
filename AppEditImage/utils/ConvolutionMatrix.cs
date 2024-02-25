@@ -83,7 +83,7 @@ namespace AppEditImage.utils
 					
 					int stopAddress = (int)ptr + bmpData.Stride * (bmpData.Height -2);
 
-					while ((int)ptr < stopAddress)
+					while ((int)ptr < stopAddress - 6)
 						{
 							Pix = (((((TempPtr[2] * TopLeft) + (TempPtr[5] * TopMid) + (TempPtr[8] * TopRight)) +
 							  ((TempPtr[2 + Stride] * MidLeft) + (TempPtr[5 + Stride] * Pixel) + (TempPtr[8 + Stride] * MidRight)) +

@@ -49,7 +49,7 @@ namespace AppEditImage.utils
 					byte* ptr = (byte*)bmpData.Scan0.ToPointer();
 					int stopAddress = (int)ptr + bmpData.Stride * bmpData.Height;
 
-					while ((int)ptr != stopAddress)
+					while ((int)ptr < stopAddress)
 					{
 						*ptr = (byte)((ptr[2] * .299) + (ptr[1] * .587) + (ptr[0] * .114));
 						ptr[1] = *ptr;
@@ -78,7 +78,7 @@ namespace AppEditImage.utils
 					byte* ptr = (byte*)bmpData.Scan0.ToPointer();
 					int stopAddress = (int)ptr + bmpData.Stride * bmpData.Height;
 
-					while ((int)ptr != stopAddress)
+					while ((int)ptr < stopAddress)
 					{
 						ptr[0] = (byte)(255 - ptr[0]);
 						ptr[1] = (byte)(255 - ptr[1]);
@@ -128,7 +128,7 @@ namespace AppEditImage.utils
 					int Pixel = 0;
 
 					//Vòng lặp xử lý từng pixel trong ảnh.
-					while ((int)ptr != stopAddress)
+					while ((int)ptr < stopAddress)
 					{
 						// chuyển đổi một pixel màu  từ không gian màu RGB sang mức xám bằng cách sử dụng công thức trung bình có trọng số
 						ptr[0] = (byte)((.299 * ptr[2]) + (ptr[1] * .587) + (ptr[0] * .114));
@@ -167,7 +167,7 @@ namespace AppEditImage.utils
 					byte* ptr = (byte*)bmpData.Scan0.ToPointer();
 					int stopAddress = (int)ptr + bmpData.Stride * bmpData.Height;
 
-					while ((int)ptr != stopAddress)
+					while ((int)ptr < stopAddress)
 					{
 						Color pixelColor = Color.FromArgb(ptr[2], ptr[1], ptr[0]);
 						int coolR = Math.Max(0, pixelColor.R - 50);
@@ -200,7 +200,7 @@ namespace AppEditImage.utils
 					byte* ptr = (byte*)bmpData.Scan0.ToPointer();
 					int stopAddress = (int)ptr + bmpData.Stride * bmpData.Height;
 
-					while ((int)ptr != stopAddress)
+					while ((int)ptr < stopAddress)
 					{
 						Color pixelColor = Color.FromArgb(ptr[2], ptr[1], ptr[0]);
 						int warmR = Math.Min(255, pixelColor.R + 50);
