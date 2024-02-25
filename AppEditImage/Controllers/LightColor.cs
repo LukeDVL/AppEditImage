@@ -34,6 +34,11 @@ namespace AppEditImage.Controllers
 
         }
 
+        override public void Refresh()
+        {
+            base.Refresh();
+        }
+
         private void UpdateValueTextBoxToTrackBar(TrackBar trackBar, TextBox textBox)
         {
             // Kiểm tra nếu TextBox không rỗng

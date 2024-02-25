@@ -22,7 +22,7 @@ namespace AppEditImage.utils
                     byte* ptr = (byte*)bmpData.Scan0.ToPointer();
                     int stopAddress = (int)ptr + bmpData.Stride * bmpData.Height;
 
-                    while ((int)ptr != stopAddress)
+                    while ((int)ptr < stopAddress)
                     {
                         int val = ptr[2] + brightnessValue;
                         ptr[2] = (byte)Math.Max(0, Math.Min(255, val));
@@ -61,7 +61,7 @@ namespace AppEditImage.utils
 
                     contrast *= contrast;
 
-                    while ((int)ptr != stopAddress)
+                    while ((int)ptr < stopAddress)
                     {
                         for (int i = 0; i < 3; i++)
                         {
@@ -85,10 +85,5 @@ namespace AppEditImage.utils
                 bmp.UnlockBits(bmpData);
             }
         }
-
-
-        
-
-
     }
 }
