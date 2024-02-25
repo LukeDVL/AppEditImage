@@ -72,7 +72,9 @@ namespace AppEditImage.Controllers
                 Light.Brightness(img, trackBarBrightness.Value);
                 Light.Contrast(img, trackBarContrast.Value);
 
+
                 main.ShowImage(img);
+
             }
         }
 

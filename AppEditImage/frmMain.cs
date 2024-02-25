@@ -236,33 +236,63 @@ namespace AppEditImage
                 picImg.Invalidate(); // Vô hiệu hóa điều khiển để kích hoạt sự kiện Paint
             }
         }
-
+        //! this is not good
         private void picImg_MouseUp(object sender, MouseEventArgs e)
         {
-            if (mouseDown)
-            {
+            if (!mouseDown) return;
                 b = e.Location;
                 mouseDown = false;
+            if (Rect == null) return;
+                
+            Point offset = getOffSet();
 
-                if (Rect != null)
+            Rectangle intersectionRect = Helper.GetIntersectionRect(Rect, new Rectangle(offset.X , offset.Y, picImg.Width - offset.X * 2, picImg.Height - offset.Y *2));
+
+            if(intersectionRect != Rectangle.Empty)
+            {
+                double scale = Math.Max(1, offset.X < offset.Y ? (double)picImg.Image.Width / picImg.Width : (double)picImg.Image.Height / picImg.Height);
+
+
+                Rectangle rectWithScale = new Rectangle
                 {
+                    X = (int) ((intersectionRect.X - offset.X) * scale),
+                    Y = (int) ((intersectionRect.Y - offset.Y) * scale),
+                    Width = (int)(intersectionRect.Width * scale),
+                    Height = (int)(intersectionRect.Height * scale)
+                };
 
-                    Bitmap bitm = new Bitmap(picImg.Image, picImg.Width, picImg.Height);
-                    Bitmap crop = new Bitmap(Rect.Width, Rect.Height);
+                Bitmap bitm = new Bitmap(picImg.Image, (int)((picImg.Width - offset.X * 2) * scale), (int)((picImg.Height - offset.Y * 2) * scale));
+                Bitmap crop = new Bitmap(rectWithScale.Width, rectWithScale.Height);
 
-                    using (Graphics g = Graphics.FromImage(crop))
-                    {
-                        g.DrawImage(bitm, 0, 0, Rect, GraphicsUnit.Pixel);
-                    }
-
-                    ShowImage(crop);
-                    ImageHistoryManager.Instance.SaveHistoryState(crop);
-                    ImageHistoryManager.Instance.currentImage = crop;
-                    isEdited = true;
-
-
+                using (Graphics g = Graphics.FromImage(crop))
+                {
+                    g.DrawImage(bitm, 0, 0, rectWithScale, GraphicsUnit.Pixel);
                 }
+
+
+                picImg.Image = crop;
+                ImageHistoryManager.Instance.SaveHistoryState(crop);
+                ImageHistoryManager.Instance.currentImage = crop;
+                isEdited = true;
+            } else
+            {
+                isEdited = true;
+                picImg.Refresh();
             }
+
+            
+        }
+
+        private Point getOffSet()
+        {
+            double ratioWi = (double)picImg.Image.Width / picImg.Image.Height;
+            double ratioHi = (double)picImg.Image.Height / picImg.Image.Width;
+
+            return new Point
+            {
+                X = (int)Math.Max((picImg.Width - (picImg.Height * ratioWi)) / 2, 0),
+                Y = (int)Math.Max((picImg.Height - (picImg.Width * ratioHi)) / 2, 0)
+            };
         }
 
         private Rectangle GetRect()
