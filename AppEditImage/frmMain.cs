@@ -69,17 +69,16 @@ namespace AppEditImage
         public void btnUndo_Click(object sender, EventArgs e)
         {
             ImageHistoryManager.Instance.Undo();
-            lightColorContronller.trackBarBrightness.Value = 0;
-            lightColorContronller.txbBrightness.Text = "0";
-
-            lightColorContronller.trackBarContrast.Value = 0;
-            lightColorContronller.txbContrast.Text = "0";
+            lightColorContronller.Refresh();
+           
             ShowImage(ImageHistoryManager.Instance.currentImage);
         }
 
         private void btnRedo_Click(object sender, EventArgs e)
         {
             ImageHistoryManager.Instance.Redo();
+            lightColorContronller.Refresh();
+
             ShowImage(ImageHistoryManager.Instance.currentImage);
         }
 

@@ -17,7 +17,7 @@ namespace AppEditImage.Controllers
     {
         private frmMain main;
         Bitmap img;
-
+        private LightState lightState;
         public LightColor(frmMain main)
         {
             InitializeComponent();
@@ -35,8 +35,14 @@ namespace AppEditImage.Controllers
         }
 
         override public void Refresh()
-        {
+        {    
             base.Refresh();
+        }
+
+        private Bitmap getOriginImg()
+        {
+
+            return lightState == LightState.Empty() ? ImageHistoryManager.Instance.currentNode.Value.Img : lightState.OriginalImage;
         }
 
         private void UpdateValueTextBoxToTrackBar(TrackBar trackBar, TextBox textBox)
@@ -72,7 +78,7 @@ namespace AppEditImage.Controllers
             txbBrightness.Text = trackBarBrightness.Value.ToString();
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                img = new Bitmap(ImageHistoryManager.Instance.currentImage);
+                img = new Bitmap(getOriginImg());
 
                 Light.Brightness(img, trackBarBrightness.Value);
                 Light.Contrast(img, trackBarContrast.Value);
@@ -94,7 +100,7 @@ namespace AppEditImage.Controllers
             txbContrast.Text = trackBarContrast.Value.ToString();
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                img = new Bitmap(ImageHistoryManager.Instance.currentImage);
+                img = new Bitmap(getOriginImg());
 
                 Light.Contrast(img, trackBarContrast.Value);
                 Light.Brightness(img, trackBarBrightness.Value);
@@ -108,22 +114,55 @@ namespace AppEditImage.Controllers
             UpdateValueTextBoxToTrackBar(trackBarContrast, txbContrast);
         }
 
+        private void handleSaveHistory()
+        {
+            if (lightState == LightState.Empty())
+            {
+                LightState newLightState = new LightState(new Bitmap(getOriginImg()))
+                {
+                    Brightness = trackBarBrightness.Value,
+                    Contrast = trackBarContrast.Value
+                };
+
+                lightState = newLightState;
+                ImageHistoryManager.Instance.SaveHistoryState(img, newLightState);
+            }
+            else
+            {
+                LightState newLightState = lightState.Clone();
+                newLightState.Brightness = trackBarBrightness.Value;
+                newLightState.Contrast = trackBarContrast.Value;
+
+                lightState = newLightState;
+                ImageHistoryManager.Instance.SaveHistoryState(img, newLightState);
+            }
+            main.isEdited = true;
+        }
+
         private void trackBarBrightness_MouseUp(object sender, MouseEventArgs e)
         {
-            ImageHistoryManager.Instance.SaveHistoryState(img);
-            main.isEdited = true;
-            //ImageHistoryManager.Instance.currentImage = img;
+            handleSaveHistory();
         }
 
         private void trackBarContrast_MouseUp(object sender, MouseEventArgs e)
         {
-            ImageHistoryManager.Instance.SaveHistoryState(img);
-            main.isEdited = true;
+            handleSaveHistory();
         }
 
         private void btnBrightness_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            lightState = ImageHistoryManager.Instance.currentNode.Value.lightState;
+
+            trackBarBrightness.Value = lightState.Brightness;
+            txbBrightness.Text = lightState.Brightness.ToString();
+
+            trackBarContrast.Value = lightState.Contrast;
+            txbContrast.Text = lightState.Contrast.ToString();
         }
     }
 }

@@ -10,7 +10,6 @@ namespace AppEditImage.utils
 {
     static class Light
     {
-
         public static void Brightness(Bitmap bmp, int brightnessValue)
         {
             BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
