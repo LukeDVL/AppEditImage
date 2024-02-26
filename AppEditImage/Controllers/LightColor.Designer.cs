@@ -37,9 +37,17 @@ namespace AppEditImage.Controllers
             this.lbContrast = new System.Windows.Forms.Label();
             this.lbBrightness = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txbShadow = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.trackBarShadow = new System.Windows.Forms.TrackBar();
+            this.txbHighlight = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.trackBarHighlight = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBrightness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarContrast)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarShadow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarHighlight)).BeginInit();
             this.SuspendLayout();
             // 
             // txbBrightness
@@ -144,6 +152,12 @@ namespace AppEditImage.Controllers
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.txbShadow);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.trackBarShadow);
+            this.panel1.Controls.Add(this.txbHighlight);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.trackBarHighlight);
             this.panel1.Controls.Add(this.lbLight);
             this.panel1.Controls.Add(this.txbBrightness);
             this.panel1.Controls.Add(this.txbContrast);
@@ -159,6 +173,92 @@ namespace AppEditImage.Controllers
             this.panel1.TabIndex = 11;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // txbShadow
+            // 
+            this.txbShadow.BackColor = System.Drawing.Color.Black;
+            this.txbShadow.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbShadow.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txbShadow.ForeColor = System.Drawing.Color.White;
+            this.txbShadow.Location = new System.Drawing.Point(229, 291);
+            this.txbShadow.Margin = new System.Windows.Forms.Padding(4);
+            this.txbShadow.MaxLength = 4;
+            this.txbShadow.Name = "txbShadow";
+            this.txbShadow.Size = new System.Drawing.Size(43, 20);
+            this.txbShadow.TabIndex = 16;
+            this.txbShadow.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbShadow.TextChanged += new System.EventHandler(this.txbShadow_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Image = global::AppEditImage.Properties.Resources.icons8_contrast_24;
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Location = new System.Drawing.Point(9, 288);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 28);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "          Shadow";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // trackBarShadow
+            // 
+            this.trackBarShadow.AutoSize = false;
+            this.trackBarShadow.Location = new System.Drawing.Point(5, 326);
+            this.trackBarShadow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 7);
+            this.trackBarShadow.Maximum = 100;
+            this.trackBarShadow.Minimum = -100;
+            this.trackBarShadow.Name = "trackBarShadow";
+            this.trackBarShadow.Size = new System.Drawing.Size(267, 25);
+            this.trackBarShadow.TabIndex = 14;
+            this.trackBarShadow.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBarShadow.ValueChanged += new System.EventHandler(this.trackBarShadow_ValueChanged);
+            this.trackBarShadow.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBarShadow_MouseUp);
+            // 
+            // txbHighlight
+            // 
+            this.txbHighlight.BackColor = System.Drawing.Color.Black;
+            this.txbHighlight.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbHighlight.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txbHighlight.ForeColor = System.Drawing.Color.White;
+            this.txbHighlight.Location = new System.Drawing.Point(229, 217);
+            this.txbHighlight.Margin = new System.Windows.Forms.Padding(4);
+            this.txbHighlight.MaxLength = 4;
+            this.txbHighlight.Name = "txbHighlight";
+            this.txbHighlight.Size = new System.Drawing.Size(43, 20);
+            this.txbHighlight.TabIndex = 13;
+            this.txbHighlight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbHighlight.TextChanged += new System.EventHandler(this.txbHighlight_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Image = global::AppEditImage.Properties.Resources.icons8_contrast_24;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Location = new System.Drawing.Point(9, 214);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 28);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "          Highlight";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // trackBarHighlight
+            // 
+            this.trackBarHighlight.AutoSize = false;
+            this.trackBarHighlight.Location = new System.Drawing.Point(5, 252);
+            this.trackBarHighlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 7);
+            this.trackBarHighlight.Maximum = 100;
+            this.trackBarHighlight.Minimum = -100;
+            this.trackBarHighlight.Name = "trackBarHighlight";
+            this.trackBarHighlight.Size = new System.Drawing.Size(267, 25);
+            this.trackBarHighlight.TabIndex = 11;
+            this.trackBarHighlight.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBarHighlight.ValueChanged += new System.EventHandler(this.trackBarHighlight_ValueChanged);
+            this.trackBarHighlight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBarHighlight_MouseUp);
+            // 
             // LightColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -172,6 +272,8 @@ namespace AppEditImage.Controllers
             ((System.ComponentModel.ISupportInitialize)(this.trackBarContrast)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarShadow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarHighlight)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -185,5 +287,11 @@ namespace AppEditImage.Controllers
         public System.Windows.Forms.TextBox txbBrightness;
         public System.Windows.Forms.TextBox txbContrast;
         public System.Windows.Forms.TrackBar trackBarContrast;
+        public System.Windows.Forms.TextBox txbHighlight;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TrackBar trackBarHighlight;
+        public System.Windows.Forms.TextBox txbShadow;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.TrackBar trackBarShadow;
     }
 }

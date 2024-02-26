@@ -18,6 +18,7 @@ namespace AppEditImage.Controllers
         private frmMain main;
         Bitmap img;
         private LightState lightState;
+        private Boolean skipTextChangeEven = false;
         public LightColor(frmMain main)
         {
             InitializeComponent();
@@ -31,7 +32,11 @@ namespace AppEditImage.Controllers
             trackBarContrast.Value = 0;
             txbContrast.Text = "0";
 
+            trackBarHighlight.Value = 0;
+            txbHighlight.Text = "0";
 
+            trackBarShadow.Value = 0;
+            txbShadow.Text = "0";
         }
 
         override public void Refresh()
@@ -45,8 +50,16 @@ namespace AppEditImage.Controllers
             return lightState == LightState.Empty() ? ImageHistoryManager.Instance.currentNode.Value.Img : lightState.OriginalImage;
         }
 
+        private void setTextBoxValue(TextBox textBox, int value)
+        {
+            skipTextChangeEven = true;
+            textBox.Text = value.ToString();
+            skipTextChangeEven = false;
+        }
+
         private void UpdateValueTextBoxToTrackBar(TrackBar trackBar, TextBox textBox)
         {
+            if (skipTextChangeEven) return;
             // Kiểm tra nếu TextBox không rỗng
             if (!string.IsNullOrEmpty(textBox.Text))
             {
@@ -75,14 +88,15 @@ namespace AppEditImage.Controllers
 
         private void trackBarBrightness_ValueChanged(object sender, EventArgs e)
         {
-            txbBrightness.Text = trackBarBrightness.Value.ToString();
+            setTextBoxValue(txbBrightness, trackBarBrightness.Value);
             if (ImageHistoryManager.Instance.currentImage != null)
             {
                 img = new Bitmap(getOriginImg());
 
                 Light.Brightness(img, trackBarBrightness.Value);
                 Light.Contrast(img, trackBarContrast.Value);
-
+                Light.Highlight(img, trackBarHighlight.Value);
+                Light.Shadow(img, trackBarShadow.Value);
 
                 main.ShowImage(img);
 
@@ -97,13 +111,17 @@ namespace AppEditImage.Controllers
 
         private void trackBarContrast_ValueChanged(object sender, EventArgs e)
         {
-            txbContrast.Text = trackBarContrast.Value.ToString();
+            setTextBoxValue(txbContrast, trackBarContrast.Value);
+       
             if (ImageHistoryManager.Instance.currentImage != null)
             {
                 img = new Bitmap(getOriginImg());
 
                 Light.Contrast(img, trackBarContrast.Value);
                 Light.Brightness(img, trackBarBrightness.Value);
+                Light.Highlight(img, trackBarHighlight.Value);
+                Light.Shadow(img, trackBarShadow.Value);
+
 
                 main.ShowImage(img);
             }
@@ -121,7 +139,10 @@ namespace AppEditImage.Controllers
                 LightState newLightState = new LightState(new Bitmap(getOriginImg()))
                 {
                     Brightness = trackBarBrightness.Value,
-                    Contrast = trackBarContrast.Value
+                    Contrast = trackBarContrast.Value,
+                    HighLight = trackBarHighlight.Value,
+                    Shadow = trackBarShadow.Value
+
                 };
 
                 lightState = newLightState;
@@ -132,6 +153,8 @@ namespace AppEditImage.Controllers
                 LightState newLightState = lightState.Clone();
                 newLightState.Brightness = trackBarBrightness.Value;
                 newLightState.Contrast = trackBarContrast.Value;
+                newLightState.HighLight = trackBarHighlight.Value;
+                newLightState.Shadow = trackBarShadow.Value;
 
                 lightState = newLightState;
                 ImageHistoryManager.Instance.SaveHistoryState(img, newLightState);
@@ -149,11 +172,6 @@ namespace AppEditImage.Controllers
             handleSaveHistory();
         }
 
-        private void btnBrightness_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             lightState = ImageHistoryManager.Instance.currentNode.Value.lightState;
@@ -163,6 +181,67 @@ namespace AppEditImage.Controllers
 
             trackBarContrast.Value = lightState.Contrast;
             txbContrast.Text = lightState.Contrast.ToString();
+
+            trackBarHighlight.Value = lightState.HighLight;
+            txbHighlight.Text = lightState.HighLight.ToString();
+
+            trackBarShadow.Value = lightState.Shadow;
+            txbShadow.Text = lightState.Shadow.ToString();
+        }
+
+        private void trackBarHighlight_ValueChanged(object sender, EventArgs e)
+        {
+            setTextBoxValue(txbHighlight, trackBarHighlight.Value);
+           
+            if (ImageHistoryManager.Instance.currentImage != null)
+            {
+                img = new Bitmap(getOriginImg());
+
+                Light.Contrast(img, trackBarContrast.Value);
+                Light.Brightness(img, trackBarBrightness.Value);
+                Light.Highlight(img, trackBarHighlight.Value);
+                Light.Shadow(img, trackBarShadow.Value);
+
+
+                main.ShowImage(img);
+            }
+        }
+
+        private void txbHighlight_TextChanged(object sender, EventArgs e)
+        {
+            UpdateValueTextBoxToTrackBar(trackBarHighlight, txbHighlight);
+        }
+
+        private void trackBarHighlight_MouseUp(object sender, MouseEventArgs e)
+        {
+            handleSaveHistory();
+        }
+
+        private void trackBarShadow_ValueChanged(object sender, EventArgs e)
+        {
+            setTextBoxValue(txbShadow, trackBarShadow.Value);
+ 
+            if (ImageHistoryManager.Instance.currentImage != null)
+            {
+                img = new Bitmap(getOriginImg());
+
+                Light.Contrast(img, trackBarContrast.Value);
+                Light.Brightness(img, trackBarBrightness.Value);
+                Light.Highlight(img, trackBarHighlight.Value);
+                Light.Shadow(img, trackBarShadow.Value);
+
+                main.ShowImage(img);
+            }
+        }
+
+        private void trackBarShadow_MouseUp(object sender, MouseEventArgs e)
+        {
+            handleSaveHistory();
+        }
+
+        private void txbShadow_TextChanged(object sender, EventArgs e)
+        { 
+            UpdateValueTextBoxToTrackBar(trackBarShadow, txbShadow);
         }
     }
 }
