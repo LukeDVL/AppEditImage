@@ -14,6 +14,7 @@ namespace AppEditImage.Controllers
     public partial class Filter : UserControl
     {
         private frmMain main;
+        private Bitmap originImage;
         public Filter(frmMain main)
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace AppEditImage.Controllers
         {
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage); ;
+                Bitmap img = new Bitmap(getOgiginImg()); ;
                 Filters.GaussianBlur(img,4);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
                 main.ShowImage(img);
@@ -37,7 +38,7 @@ namespace AppEditImage.Controllers
         {
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
+                Bitmap img = new Bitmap(getOgiginImg());
                 Filters.Grayscale(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
                 main.ShowImage(img);
@@ -49,7 +50,7 @@ namespace AppEditImage.Controllers
         {
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
+                Bitmap img = new Bitmap(getOgiginImg());
                 Filters.Invert(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
                 main.ShowImage(img);
@@ -61,7 +62,7 @@ namespace AppEditImage.Controllers
         {
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
+                Bitmap img = new Bitmap(getOgiginImg());
                 Filters.MeanRemoval(img,9);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
                 main.ShowImage(img);
@@ -73,7 +74,7 @@ namespace AppEditImage.Controllers
         {
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
+                Bitmap img = new Bitmap(getOgiginImg());
                 Filters.Sepia(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
                 main.ShowImage(img);
@@ -85,7 +86,7 @@ namespace AppEditImage.Controllers
         {
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
+                Bitmap img = new Bitmap(getOgiginImg());
 
                 Filters.Cool(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
@@ -98,7 +99,7 @@ namespace AppEditImage.Controllers
         {
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
+                Bitmap img = new Bitmap(getOgiginImg());
 
                 Filters.Warm(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
@@ -111,13 +112,27 @@ namespace AppEditImage.Controllers
         {
             if (ImageHistoryManager.Instance.currentImage != null)
             {
-                Bitmap img = new Bitmap(ImageHistoryManager.Instance.currentImage);
+                Bitmap img = new Bitmap(getOgiginImg());
 
                 Filters.Emboss(img);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
                 main.ShowImage(img);
                 main.isEdited = true;
             }
+        }
+
+        private Bitmap getOgiginImg()
+        {
+            if(originImage == null)
+            {
+                originImage = ImageHistoryManager.Instance.currentNode.Value.Img;
+            }
+            return originImage;
+        }
+
+        private void pnlTools_Paint(object sender, PaintEventArgs e)
+        {
+            originImage = ImageHistoryManager.Instance.currentNode.Value.Img;
         }
     }
 }

@@ -30,15 +30,15 @@ namespace AppEditImage.Controllers
         private void InitializeComponent()
         {
             this.pnlTools = new System.Windows.Forms.Panel();
-            this.btnMeanRemoval = new System.Windows.Forms.Button();
-            this.lbFilter = new System.Windows.Forms.Label();
             this.btnCool = new System.Windows.Forms.Button();
             this.btnWarm = new System.Windows.Forms.Button();
             this.btnSepia = new System.Windows.Forms.Button();
+            this.btnMeanRemoval = new System.Windows.Forms.Button();
             this.btnInvert = new System.Windows.Forms.Button();
             this.btnGrayscale = new System.Windows.Forms.Button();
             this.btnEmboss = new System.Windows.Forms.Button();
             this.btnGaussianBlur = new System.Windows.Forms.Button();
+            this.lbFilter = new System.Windows.Forms.Label();
             this.pnlTools.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,37 +61,7 @@ namespace AppEditImage.Controllers
             this.pnlTools.Name = "pnlTools";
             this.pnlTools.Size = new System.Drawing.Size(307, 838);
             this.pnlTools.TabIndex = 1;
-            // 
-            // btnMeanRemoval
-            // 
-            this.btnMeanRemoval.BackgroundImage = global::AppEditImage.Properties.Resources.mean_removal;
-            this.btnMeanRemoval.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMeanRemoval.FlatAppearance.BorderSize = 0;
-            this.btnMeanRemoval.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMeanRemoval.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnMeanRemoval.ForeColor = System.Drawing.Color.White;
-            this.btnMeanRemoval.Location = new System.Drawing.Point(155, 392);
-            this.btnMeanRemoval.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMeanRemoval.Name = "btnMeanRemoval";
-            this.btnMeanRemoval.Size = new System.Drawing.Size(140, 92);
-            this.btnMeanRemoval.TabIndex = 6;
-            this.btnMeanRemoval.Text = "Mean Removal";
-            this.btnMeanRemoval.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMeanRemoval.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnMeanRemoval.UseVisualStyleBackColor = true;
-            this.btnMeanRemoval.Click += new System.EventHandler(this.btnMeanRemoval_Click);
-            // 
-            // lbFilter
-            // 
-            this.lbFilter.AutoSize = true;
-            this.lbFilter.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbFilter.ForeColor = System.Drawing.Color.White;
-            this.lbFilter.Location = new System.Drawing.Point(38, 25);
-            this.lbFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbFilter.Name = "lbFilter";
-            this.lbFilter.Size = new System.Drawing.Size(69, 27);
-            this.lbFilter.TabIndex = 0;
-            this.lbFilter.Text = "FILTER";
+            this.pnlTools.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTools_Paint);
             // 
             // btnCool
             // 
@@ -149,6 +119,25 @@ namespace AppEditImage.Controllers
             this.btnSepia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSepia.UseVisualStyleBackColor = true;
             this.btnSepia.Click += new System.EventHandler(this.btnSepia_Click);
+            // 
+            // btnMeanRemoval
+            // 
+            this.btnMeanRemoval.BackgroundImage = global::AppEditImage.Properties.Resources.mean_removal;
+            this.btnMeanRemoval.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMeanRemoval.FlatAppearance.BorderSize = 0;
+            this.btnMeanRemoval.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMeanRemoval.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnMeanRemoval.ForeColor = System.Drawing.Color.White;
+            this.btnMeanRemoval.Location = new System.Drawing.Point(155, 392);
+            this.btnMeanRemoval.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMeanRemoval.Name = "btnMeanRemoval";
+            this.btnMeanRemoval.Size = new System.Drawing.Size(140, 92);
+            this.btnMeanRemoval.TabIndex = 6;
+            this.btnMeanRemoval.Text = "Mean Removal";
+            this.btnMeanRemoval.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMeanRemoval.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMeanRemoval.UseVisualStyleBackColor = true;
+            this.btnMeanRemoval.Click += new System.EventHandler(this.btnMeanRemoval_Click);
             // 
             // btnInvert
             // 
@@ -225,6 +214,18 @@ namespace AppEditImage.Controllers
             this.btnGaussianBlur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnGaussianBlur.UseVisualStyleBackColor = true;
             this.btnGaussianBlur.Click += new System.EventHandler(this.btnGaussianBlur_Click);
+            // 
+            // lbFilter
+            // 
+            this.lbFilter.AutoSize = true;
+            this.lbFilter.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbFilter.ForeColor = System.Drawing.Color.White;
+            this.lbFilter.Location = new System.Drawing.Point(38, 25);
+            this.lbFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFilter.Name = "lbFilter";
+            this.lbFilter.Size = new System.Drawing.Size(69, 27);
+            this.lbFilter.TabIndex = 0;
+            this.lbFilter.Text = "FILTER";
             // 
             // Filter
             // 
