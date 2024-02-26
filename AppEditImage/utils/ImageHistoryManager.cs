@@ -7,13 +7,73 @@ using System.Threading.Tasks;
 
 namespace AppEditImage.utils
 {
+    public class LightState
+    {
+        private static LightState EmptyState;
+        public Bitmap OriginalImage { get; }
+        public int Brightness { get; set; }
+        public int Contrast { get; set; }
 
+        public LightState()
+        {
+            Brightness = 0;
+            Contrast = 0;
+            OriginalImage = null;
+        }
+
+        public LightState(Bitmap img, int contrast, int brightness)
+        {
+            this.OriginalImage = img ;
+            this.Contrast = contrast;
+            this.Brightness = brightness;
+        }
+
+        public LightState(Bitmap img)
+        {
+            this.OriginalImage = img;       
+        }
+
+        public static LightState Empty()
+        {
+            if(EmptyState == null)
+            {
+                EmptyState = new LightState();
+            }
+            return EmptyState;
+        }
+
+        public LightState Clone()
+        {
+            return new LightState(this.OriginalImage)
+            {
+                Contrast = this.Contrast,
+                Brightness = this.Brightness,
+            };
+        }
+    }
+
+    public class HistoryItem
+    {
+        public Bitmap Img { get; set; }
+        public LightState lightState {get; set;}
+        public HistoryItem(Bitmap img)
+        {
+            this.Img = img;
+            this.lightState = LightState.Empty();
+        }
+
+        public HistoryItem(Bitmap img, LightState lightState)
+        {
+            this.Img = img;
+            this.lightState = lightState;
+        }
+    }
 
     public class ImageHistoryManager
     {
         private static ImageHistoryManager instance;
-        public LinkedList<Bitmap> history = new LinkedList<Bitmap>();
-        public LinkedListNode<Bitmap> currentNode;
+        public LinkedList<HistoryItem> history = new LinkedList<HistoryItem>();
+        public LinkedListNode<HistoryItem> currentNode;
         public Bitmap originalImage { get; set; }
         public Bitmap currentImage { get; set; }
 
@@ -37,21 +97,45 @@ namespace AppEditImage.utils
             if (image != null)
             {
                 Bitmap clonedImage = new Bitmap(image);
-                LinkedListNode<Bitmap> newNode = new LinkedListNode<Bitmap>(clonedImage);
+                LinkedListNode<HistoryItem> newNode = new LinkedListNode<HistoryItem>(new HistoryItem(clonedImage));
 
                 // Nếu đây là thêm trạng thái mới, cắt bỏ các trạng thái sau hiện tại
                 if (currentNode != null && currentNode.Next != null)
                 {
-
                     // Xóa tất cả các nút từ nút tiếp theo của currentNode cho đến cuối danh sách
-                    LinkedListNode<Bitmap> nextNode = currentNode.Next;
+                    LinkedListNode<HistoryItem> nextNode = currentNode.Next;
                     while (nextNode != null)
                     {
-                        LinkedListNode<Bitmap> tempNode = nextNode.Next;
+                        LinkedListNode<HistoryItem> tempNode = nextNode.Next;
                         history.Remove(nextNode);
                         nextNode = tempNode;
                     }
+                }
 
+                // Thêm trạng thái mới vào danh sách
+                history.AddLast(newNode);
+                currentNode = newNode;
+            }
+        }
+
+        public void SaveHistoryState(Bitmap image, LightState lightState)
+        {
+            if (image != null)
+            {
+                Bitmap clonedImage = new Bitmap(image);
+                LinkedListNode<HistoryItem> newNode = new LinkedListNode<HistoryItem>(new HistoryItem(clonedImage, lightState));
+
+                // Nếu đây là thêm trạng thái mới, cắt bỏ các trạng thái sau hiện tại
+                if (currentNode != null && currentNode.Next != null)
+                {
+                    // Xóa tất cả các nút từ nút tiếp theo của currentNode cho đến cuối danh sách
+                    LinkedListNode<HistoryItem> nextNode = currentNode.Next;
+                    while (nextNode != null)
+                    {
+                        LinkedListNode<HistoryItem> tempNode = nextNode.Next;
+                        history.Remove(nextNode);
+                        nextNode = tempNode;
+                    }
                 }
 
                 // Thêm trạng thái mới vào danh sách
@@ -65,7 +149,7 @@ namespace AppEditImage.utils
             if (currentNode != null && currentNode.Previous != null)
             {
                 currentNode = currentNode.Previous;
-                currentImage = new Bitmap(currentNode.Value);
+                currentImage = new Bitmap(currentNode.Value.Img);
             }
         }
 
@@ -74,8 +158,7 @@ namespace AppEditImage.utils
             if (currentNode != null && currentNode.Next != null)
             {
                 currentNode = currentNode.Next;
-                currentImage = new Bitmap(currentNode.Value);
-
+                currentImage = new Bitmap(currentNode.Value.Img);
             }
         }
 
