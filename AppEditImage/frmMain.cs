@@ -69,8 +69,9 @@ namespace AppEditImage
         public void btnUndo_Click(object sender, EventArgs e)
         {
             ImageHistoryManager.Instance.Undo();
-            lightColorContronller.Refresh();
-           
+            pnlTools.Controls[0].Refresh();
+
+
             ShowImage(ImageHistoryManager.Instance.currentImage);
         }
 
