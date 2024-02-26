@@ -14,22 +14,24 @@ namespace AppEditImage.utils
         public int Brightness { get; set; }
         public int Contrast { get; set; }
 
+        public int HighLight { get; set; }
+        public int Shadow { get; set; }
+
         public LightState()
         {
             Brightness = 0;
             Contrast = 0;
+            HighLight = 0;
+            Shadow = 0;
             OriginalImage = null;
-        }
-
-        public LightState(Bitmap img, int contrast, int brightness)
-        {
-            this.OriginalImage = img ;
-            this.Contrast = contrast;
-            this.Brightness = brightness;
         }
 
         public LightState(Bitmap img)
         {
+            Brightness = 0;
+            Contrast = 0;
+            HighLight = 0;
+            Shadow = 0;
             this.OriginalImage = img;       
         }
 
@@ -48,6 +50,8 @@ namespace AppEditImage.utils
             {
                 Contrast = this.Contrast,
                 Brightness = this.Brightness,
+                HighLight = this.HighLight,
+                Shadow = this.Shadow
             };
         }
     }

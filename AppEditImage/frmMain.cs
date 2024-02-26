@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -262,7 +263,7 @@ namespace AppEditImage
                 };
 
                 Bitmap bitm = new Bitmap(picImg.Image, (int)((picImg.Width - offset.X * 2) * scale), (int)((picImg.Height - offset.Y * 2) * scale));
-                Bitmap crop = new Bitmap(rectWithScale.Width, rectWithScale.Height);
+                Bitmap crop = new Bitmap(rectWithScale.Width, rectWithScale.Height, PixelFormat.Format24bppRgb);
 
                 using (Graphics g = Graphics.FromImage(crop))
                 {
