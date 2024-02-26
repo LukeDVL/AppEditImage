@@ -37,8 +37,6 @@ namespace AppEditImage.Controllers
             this.lbContrast = new System.Windows.Forms.Label();
             this.lbBrightness = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnContrast = new System.Windows.Forms.Button();
-            this.btnBrightness = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBrightness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarContrast)).BeginInit();
             this.panel1.SuspendLayout();
@@ -51,7 +49,7 @@ namespace AppEditImage.Controllers
             this.txbBrightness.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
             this.txbBrightness.ForeColor = System.Drawing.Color.White;
             this.txbBrightness.Location = new System.Drawing.Point(229, 69);
-            this.txbBrightness.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbBrightness.Margin = new System.Windows.Forms.Padding(4);
             this.txbBrightness.MaxLength = 4;
             this.txbBrightness.Name = "txbBrightness";
             this.txbBrightness.Size = new System.Drawing.Size(43, 20);
@@ -93,7 +91,7 @@ namespace AppEditImage.Controllers
             this.txbContrast.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
             this.txbContrast.ForeColor = System.Drawing.Color.White;
             this.txbContrast.Location = new System.Drawing.Point(229, 143);
-            this.txbContrast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbContrast.Margin = new System.Windows.Forms.Padding(4);
             this.txbContrast.MaxLength = 4;
             this.txbContrast.Name = "txbContrast";
             this.txbContrast.Size = new System.Drawing.Size(43, 20);
@@ -146,8 +144,6 @@ namespace AppEditImage.Controllers
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.btnContrast);
-            this.panel1.Controls.Add(this.btnBrightness);
             this.panel1.Controls.Add(this.lbLight);
             this.panel1.Controls.Add(this.txbBrightness);
             this.panel1.Controls.Add(this.txbContrast);
@@ -157,44 +153,11 @@ namespace AppEditImage.Controllers
             this.panel1.Controls.Add(this.trackBarBrightness);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(307, 838);
             this.panel1.TabIndex = 11;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // btnContrast
-            // 
-            this.btnContrast.FlatAppearance.BorderSize = 0;
-            this.btnContrast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnContrast.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnContrast.ForeColor = System.Drawing.Color.White;
-            this.btnContrast.Image = global::AppEditImage.Properties.Resources.icons8_contrast_24;
-            this.btnContrast.Location = new System.Drawing.Point(148, 274);
-            this.btnContrast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnContrast.Name = "btnContrast";
-            this.btnContrast.Size = new System.Drawing.Size(140, 92);
-            this.btnContrast.TabIndex = 12;
-            this.btnContrast.Text = "Contrast";
-            this.btnContrast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnContrast.UseVisualStyleBackColor = true;
-            // 
-            // btnBrightness
-            // 
-            this.btnBrightness.FlatAppearance.BorderSize = 0;
-            this.btnBrightness.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBrightness.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnBrightness.ForeColor = System.Drawing.Color.White;
-            this.btnBrightness.Image = global::AppEditImage.Properties.Resources.icons8_sun_24;
-            this.btnBrightness.Location = new System.Drawing.Point(13, 274);
-            this.btnBrightness.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnBrightness.Name = "btnBrightness";
-            this.btnBrightness.Size = new System.Drawing.Size(140, 92);
-            this.btnBrightness.TabIndex = 11;
-            this.btnBrightness.Text = "Brightness";
-            this.btnBrightness.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnBrightness.UseVisualStyleBackColor = true;
-            this.btnBrightness.Click += new System.EventHandler(this.btnBrightness_Click);
             // 
             // LightColor
             // 
@@ -202,7 +165,7 @@ namespace AppEditImage.Controllers
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LightColor";
             this.Size = new System.Drawing.Size(307, 838);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBrightness)).EndInit();
@@ -222,7 +185,5 @@ namespace AppEditImage.Controllers
         public System.Windows.Forms.TextBox txbBrightness;
         public System.Windows.Forms.TextBox txbContrast;
         public System.Windows.Forms.TrackBar trackBarContrast;
-        private System.Windows.Forms.Button btnContrast;
-        private System.Windows.Forms.Button btnBrightness;
     }
 }
