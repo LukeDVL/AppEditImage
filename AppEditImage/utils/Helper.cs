@@ -11,21 +11,21 @@ namespace AppEditImage.utils
     {
         public static Rectangle GetIntersectionRect(Rectangle a, Rectangle b)
         {
-            // Calculate the left and right bounds of the intersection
+            //Tính toán ranh giới bên trái và bên phải của phần giao nhau
             int left = Math.Max(a.Left, b.Left);
             int right = Math.Min(a.Right, b.Right);
 
-            // Calculate the top and bottom bounds of the intersection
+            //Tính toán ranh giới phía trên và phía dưới của phần giao nhau
             int top = Math.Max(a.Top, b.Top);
             int bottom = Math.Min(a.Bottom, b.Bottom);
 
-            // Check if the intersection is valid (width and height are positive)
+            // Kiểm tra xem phần giao nhau  có hợp lệ không (chiều rộng và chiều cao là số dương)
             if (right <= left || bottom <= top)
             {
-                return Rectangle.Empty; // No intersection
+                return Rectangle.Empty; // Không có phần giao nhau
             }
 
-            // Return the intersection rectangle
+            // Trả về hình chữ nhật giao nhau
             return new Rectangle(left, top, right - left, bottom - top);
         }
     }

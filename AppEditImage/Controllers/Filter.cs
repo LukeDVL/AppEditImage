@@ -58,12 +58,12 @@ namespace AppEditImage.Controllers
             }
         }
 
-        private void btnMeanRemoval_Click(object sender, EventArgs e)
+        private void btnSharpen_Click(object sender, EventArgs e)
         {
             if (ImageHistoryManager.Instance.currentImage != null)
             {
                 Bitmap img = new Bitmap(getOgiginImg());
-                Filters.MeanRemoval(img,9);
+                Filters.Sharpen(img, 9);
                 ImageHistoryManager.Instance.SaveHistoryState(img);
                 main.ShowImage(img);
                 main.isEdited = true;
@@ -134,5 +134,7 @@ namespace AppEditImage.Controllers
         {
             originImage = ImageHistoryManager.Instance.currentNode.Value.Img;
         }
+
+       
     }
 }

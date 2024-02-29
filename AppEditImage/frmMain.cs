@@ -246,13 +246,11 @@ namespace AppEditImage
             if (Rect == null) return;
                 
             Point offset = getOffSet();
-
             Rectangle intersectionRect = Helper.GetIntersectionRect(Rect, new Rectangle(offset.X , offset.Y, picImg.Width - offset.X * 2, picImg.Height - offset.Y *2));
 
             if(intersectionRect != Rectangle.Empty)
             {
                 double scale = Math.Max(1, offset.X < offset.Y ? (double)picImg.Image.Width / picImg.Width : (double)picImg.Image.Height / picImg.Height);
-
 
                 Rectangle rectWithScale = new Rectangle
                 {
@@ -270,7 +268,6 @@ namespace AppEditImage
                     g.DrawImage(bitm, 0, 0, rectWithScale, GraphicsUnit.Pixel);
                 }
 
-
                 picImg.Image = crop;
                 ImageHistoryManager.Instance.SaveHistoryState(crop);
                 ImageHistoryManager.Instance.currentImage = crop;
@@ -279,9 +276,7 @@ namespace AppEditImage
             {
                 isEdited = true;
                 picImg.Refresh();
-            }
-
-            
+            } 
         }
 
         private Point getOffSet()

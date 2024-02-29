@@ -40,7 +40,6 @@ namespace AppEditImage.utils
             }
             finally
             {
-                // Mở khóa bits của ảnh sau khi quá trình chỉnh sửa đã hoàn thành
                 bmp.UnlockBits(bmpData);
             }
         }
@@ -48,17 +47,13 @@ namespace AppEditImage.utils
         {
             if (contrastValue == 0) return;
             BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
             try
             {
                 unsafe
                 {
                     byte* ptr = (byte*)bmpData.Scan0.ToPointer();
-
                     int stopAddress = (int)ptr + bmpData.Stride * bmpData.Height;
-
                     double contrast = (100.0 + contrastValue) / 100.0;
-
                     contrast *= contrast;
 
                     while ((int)ptr < stopAddress)
@@ -72,16 +67,13 @@ namespace AppEditImage.utils
                             pixel *= 255;
 
                             ptr[i] = (byte)Math.Max(0, Math.Min(255, pixel));
-
                         }
-
                         ptr += 3;
                     }
                 }
             }
             finally
             {
-                // Mở khóa bits của ảnh sau khi quá trình chỉnh sửa đã hoàn thành
                 bmp.UnlockBits(bmpData);
             }
         }
@@ -90,17 +82,13 @@ namespace AppEditImage.utils
         {
             if (highlightValue == 0) return;
             BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
             try
             {
                 unsafe
                 {
                     byte* ptr = (byte*)bmpData.Scan0.ToPointer();
-
                     int stopAddress = (int)ptr + bmpData.Stride * bmpData.Height;
-
-                    double highlight = (500.0 + highlightValue) / 500.0;
-
+                    double highlight = (200.0 + highlightValue) / 200.0;
                     while ((int)ptr < stopAddress)
                     {
                         if((ptr[0] + ptr[1]  + ptr[2]) /3 > 120)
@@ -127,14 +115,12 @@ namespace AppEditImage.utils
                             val = (int)(pixel * 255);
                             ptr[0] = (byte)Math.Max(0, Math.Min(255, val));
                         }                 
-
                         ptr += 3;
                     }
                 }
             }
             finally
             {
-                // Mở khóa bits của ảnh sau khi quá trình chỉnh sửa đã hoàn thành
                 bmp.UnlockBits(bmpData);
             }
         }
@@ -143,17 +129,13 @@ namespace AppEditImage.utils
         {
             if (shadowValue == 0) return;
             BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
             try
             {
                 unsafe
                 {
                     byte* ptr = (byte*)bmpData.Scan0.ToPointer();
-
                     int stopAddress = (int)ptr + bmpData.Stride * bmpData.Height;
-
-                    double shadow = (500.0 + shadowValue) / 500.0;
-
+                    double shadow = (300.0 + shadowValue) / 300.0;
                     while ((int)ptr < stopAddress)
                     {
                         if ((ptr[0] + ptr[1] + ptr[2] ) / 3 < 120)
@@ -175,14 +157,12 @@ namespace AppEditImage.utils
                             val = (int)(pixel * 255);
                             ptr[0] = (byte)Math.Max(0, Math.Min(255, val));
                         }
-
                         ptr += 3;
                     }
                 }
             }
             finally
             {
-                // Mở khóa bits của ảnh sau khi quá trình chỉnh sửa đã hoàn thành
                 bmp.UnlockBits(bmpData);
             }
         }

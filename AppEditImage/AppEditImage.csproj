@@ -193,7 +193,13 @@
     <None Include="Resources\gaussian blur.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mean removal.jpg" />
+    <None Include="Resources\icons8-highlights-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-shadows-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sharpen.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
