@@ -39,7 +39,8 @@ namespace AppEditImage.utils
 
 		public static void Grayscale(Bitmap bmp)
 		{
-			BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+			BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), 
+				ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
 
 
 			try
@@ -58,7 +59,6 @@ namespace AppEditImage.utils
 						ptr += 3;
 					}
 				}
-
 			}
 			finally
 			{
@@ -95,11 +95,12 @@ namespace AppEditImage.utils
 			}
 		}
 
-		public static void MeanRemoval(Bitmap bmp, int weight)
+		public static void Sharpen(Bitmap bmp, int weight)
 		{
 			ConvolutionMatrix m = new ConvolutionMatrix();
-			m.Apply(-1);
+			m.Apply(0);
 			m.Pixel = weight;
+			m.TopMid = m.MidLeft = m.MidRight = m.BottomMid = -2;
 			m.Factor = weight - 8;
 
 			Convolution C = new Convolution();
@@ -110,46 +111,32 @@ namespace AppEditImage.utils
 		public static void Sepia(Bitmap bmp)
 		{
 			int depth = 50;
-			//mở khóa bits của ảnh để cho phép truy cập và chỉnh sửa dữ liệu pixel.
 			BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
 			
 			try
 			{
 				unsafe
 				{
-					// Con trỏ ptr trỏ đến vùng nhớ bắt đầu của ảnh.
 					byte* ptr = (byte*)bmpData.Scan0.ToPointer();
-
-					// Địa chỉ dừng để kiểm tra khi nào điều kiện dừng vòng lặp
 					int stopAddress = (int)ptr + bmpData.Stride * bmpData.Height;
-
-					// Biến Pixel để lưu giá trị màu mới của từng kênh màu
 					int Pixel = 0;
 
-					//Vòng lặp xử lý từng pixel trong ảnh.
 					while ((int)ptr < stopAddress)
 					{
-						// chuyển đổi một pixel màu  từ không gian màu RGB sang mức xám bằng cách sử dụng công thức trung bình có trọng số
 						ptr[0] = (byte)((.299 * ptr[2]) + (ptr[1] * .587) + (ptr[0] * .114));
-
-						// Tăng giá trị kênh màu đỏ (R) và kiểm tra xem nó có vượt quá giá trị tối đa (255) hay không
 
 						Pixel = Math.Min(255, ptr[2] + (depth * 2));
 						ptr[2] = (byte)Pixel;
 
-						// Tăng giá trị kênh màu xanh lá cây (G) và kiểm tra xem nó có vượt quá giá trị tối đa (255) hay không
 						Pixel = Math.Min(255, ptr[1] + depth);
 						ptr[1] = (byte)Pixel;
 
-						// Di chuyển con trỏ lên 3 byte để chuyển sang pixel tiếp theo
 						ptr += 3;
 					}
 				}
 			}
 			finally
 			{
-				// Mở khóa bits của ảnh sau khi quá trình chỉnh sửa đã hoàn thành
 				bmp.UnlockBits(bmpData);
 			}
 		}
@@ -157,9 +144,6 @@ namespace AppEditImage.utils
 		public static void Cool(Bitmap bmp)
 		{
 			BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
-			
-
 			try
 			{
 				unsafe
@@ -183,7 +167,6 @@ namespace AppEditImage.utils
 			}
 			finally
 			{
-				// Mở khóa bits của ảnh sau khi quá trình chỉnh sửa đã hoàn thành
 				bmp.UnlockBits(bmpData);
 			}
 		}
@@ -191,8 +174,6 @@ namespace AppEditImage.utils
 		public static void Warm(Bitmap bmp)
 		{
 			BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
-			
 			try
 			{
 				unsafe
@@ -216,7 +197,6 @@ namespace AppEditImage.utils
 			}
 			finally
 			{
-				// Mở khóa bits của ảnh sau khi quá trình chỉnh sửa đã hoàn thành
 				bmp.UnlockBits(bmpData);
 			}
 		}
